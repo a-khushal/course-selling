@@ -47,6 +47,14 @@ courseRouter.get("/bulk", async(req, res)=>{
 courseRouter.get("/:id", signedInMiddleware, async(req, res)=>{
     try{
         const {id} = req.params;
+        const course = await client.course.findUnique({
+            where: {
+                id: id
+            }
+        });
+        res.status(200).json({
+            course: course
+        })
     } catch(err) {
         console.log(err);
         return res.status(500).json({ error: "Internal Server Error" });
