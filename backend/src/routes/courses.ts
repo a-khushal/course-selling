@@ -35,6 +35,24 @@ const signedInMiddleware = async(req: request, res: Response, next: NextFunction
     }
 }
 
+courseRouter.get("/bought", signedInMiddleware, async(req, res)=>{
+    try{
+        console.log(req.body.userId);
+        const coursesOfUser = await client.courseOfUser.findMany({
+            where: {
+                userId: req.body.userId,
+            },
+        });
+        return res.status(200).json({
+            courses: coursesOfUser, 
+        })
+    } catch(err) {
+        console.log(err);
+        return res.status(411).json({error: "Internal Server Error"});
+    }
+})
+
+
 courseRouter.get("/bulk", async(req, res)=>{
     try{
         const courses = await client.course.findMany({});
@@ -89,5 +107,6 @@ courseRouter.post("/:id/buy", signedInMiddleware, async(req, res)=>{
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
+
 
 export default courseRouter;
