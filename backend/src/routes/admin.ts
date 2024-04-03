@@ -48,11 +48,28 @@ adminRouter.post("/add", adminMiddleware, async(req, res)=>{
                 title: req.body.title,
                 description: req.body.description,
             }
-        })
+        });
         return res.json({
             msg: "course created!", 
             course,
-        })
+        });
+    } catch(e){
+        console.log(e);
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+adminRouter.delete("/delete/:id", adminMiddleware, async(req, res)=>{
+    try{
+        const course = await client.course.delete({
+            where: {
+                id: req.params.id,
+            }
+        });
+        return res.json({
+            msg: "course deleted", 
+            course,
+        });
     } catch(e){
         console.log(e);
         return res.status(500).json({ error: "Internal Server Error" });

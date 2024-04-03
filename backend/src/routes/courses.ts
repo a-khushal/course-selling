@@ -4,7 +4,9 @@ import { PrismaClient } from "@prisma/client";
 import jwt, {JwtPayload} from "jsonwebtoken"
 
 const courseRouter = express.Router();
+
 courseRouter.use(express.json());
+
 const client = new PrismaClient();
 
 interface request extends Request{
@@ -28,6 +30,7 @@ const signedInMiddleware = async(req: request, res: Response, next: NextFunction
         req.body.userId = payload.userId ;
         next();
     } catch (error) {
+        console.log(error)
         return res.status(500).json({ error: "Internal Server Error" });
     }
 }
@@ -60,5 +63,31 @@ courseRouter.get("/:id", signedInMiddleware, async(req, res)=>{
         return res.status(500).json({ error: "Internal Server Error" });
     }
 })
+
+courseRouter.post("/:id/buy", signedInMiddleware, async(req, res)=>{
+    try{
+        const courseId = req.params.id;
+        const userId = req.body.userId;
+        const existingRecord = await client.courseOfUser.findFirst({
+            where:{
+                userId,
+                courseId,
+            }
+        })
+        if (existingRecord) {
+            return res.status(400).json({ error: "User already owns the course" });
+        }
+        const bought = await client.courseOfUser.create({
+            data: {
+                userId: userId,
+                courseId: courseId,
+            },
+        });
+        res.status(200).json({ message: "Course purchased successfully" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
 
 export default courseRouter;
