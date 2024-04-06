@@ -67,7 +67,6 @@ courseRouter.get("/bulk", async(req, res)=>{
 
 courseRouter.get("/purchases", signedInMiddleware, async(req, res)=>{
     try{
-        let purchases: any = [];
         const userId = req.body.userId;
         const bought = await client.courseOfUser.findMany({
             where: {
