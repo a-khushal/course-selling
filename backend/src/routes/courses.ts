@@ -65,6 +65,40 @@ courseRouter.get("/bulk", async(req, res)=>{
     }
 });
 
+courseRouter.get("/purchases", signedInMiddleware, async(req, res)=>{
+    try{
+        let purchases: any = [];
+        const userId = req.body.userId;
+        const bought = await client.courseOfUser.findMany({
+            where: {
+                userId
+            }
+        });
+        if(!bought){
+            return res.status(200).json({msg: "No courses bought yet!"});
+        }
+        const purchased = bought.map(async (buy)=>{
+            const course = await client.course.findUnique({
+                where: {
+                    id: buy.courseId,
+                }
+            });
+            return course
+        })
+        Promise.all(purchased)
+            .then((purchases)=>{
+                return res.status(200).json({purchases});
+            })
+            .catch((error) => {
+                console.error("Error fetching purchases:", error);
+                return res.status(500).json({ error: "Internal Server Error" });
+            });
+    } catch {
+        console.error;
+        res.status(500).json({error: "Internal server error"})
+    }
+})
+
 courseRouter.get("/:id", signedInMiddleware, async(req, res)=>{
     try{
         const {id} = req.params;
@@ -107,6 +141,5 @@ courseRouter.post("/:id/buy", signedInMiddleware, async(req, res)=>{
         res.status(500).json({ error: "Internal Server Error" });
     }
 });
-
 
 export default courseRouter;
