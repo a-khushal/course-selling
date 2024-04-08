@@ -1,6 +1,7 @@
 import express from "express"
 import { PrismaClient } from "@prisma/client";
 import jwt from "jsonwebtoken"
+import { signupSchema, signinSchema } from "@a-khushal/course-selling";
 
 const client = new PrismaClient();
 const userRouter = express.Router();
@@ -9,6 +10,12 @@ userRouter.use(express.json());
 
 userRouter.post("/signup", async(req, res)=>{
     try{
+        const { success } = signupSchema.safeParse(req.body);
+        if(!success){
+            res.status(411).json({
+                message: "Inputs are incorrect"
+            })
+        }
         const userAlreadyExists = await client.user.findUnique({
             where: {
                 email: req.body.email
@@ -22,7 +29,8 @@ userRouter.post("/signup", async(req, res)=>{
         const user = await client.user.create({
             data:{
                 email: req.body.email,
-                password: req.body.password
+                password: req.body.password,
+                name: req.body.name,
             }
         });
         const secret = process.env.JWT_SECRET || "";
@@ -41,6 +49,12 @@ userRouter.post("/signup", async(req, res)=>{
 
 userRouter.post("/signin", async(req, res)=>{
     try{
+        const { success } = signinSchema.safeParse(req.body);
+        if(!success){
+            res.status(411).json({
+                message: "Inputs are incorrect"
+            })
+        }
         const user = await client.user.findUnique({
             where: {
                 email: req.body.email,

@@ -2,6 +2,7 @@
 import express, { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
 import jwt, { JwtPayload } from "jsonwebtoken"
+import { createCourseSchema } from "@a-khushal/course-selling";
 
 const adminRouter = express.Router();
 adminRouter.use(express.json());
@@ -43,6 +44,12 @@ const adminMiddleware = async function(req: Request, res: Response, next: NextFu
 
 adminRouter.post("/create", adminMiddleware, async(req, res)=>{
     try{
+        const { success } = createCourseSchema.safeParse(req.body);
+        if(!success){
+            res.status(411).json({
+                message: "Inputs are incorrect"
+            })
+        }
         const course = await client.course.create({
             data: {
                 title: req.body.title,

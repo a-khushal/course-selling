@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@a-khushal/course-selling": "^1.0.3",
     "@prisma/client": "^5.11.0",
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.6",
