@@ -41,7 +41,7 @@ const adminMiddleware = async function(req: Request, res: Response, next: NextFu
     }
 }
 
-adminRouter.post("/add", adminMiddleware, async(req, res)=>{
+adminRouter.post("/create", adminMiddleware, async(req, res)=>{
     try{
         const course = await client.course.create({
             data: {
