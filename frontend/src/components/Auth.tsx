@@ -19,7 +19,6 @@ export const Auth = ({type}: {type: "signup" | "signin"}) => {
     const navigate = useNavigate();
     async function sendRequest() {
         try{
-            console.log(inputs);
             const response = await axios.post(`${BACKEND_URL}/user/${type === 'signin'?"signin":"signup"}`, inputs);
             console.log(inputs);
             const jwt = response.data.token;
@@ -27,11 +26,23 @@ export const Auth = ({type}: {type: "signup" | "signin"}) => {
             navigate("/courses");
         } catch(err){
             console.log(err);
-            alert("Error while authenticating")
+            alert("Error while authenticating");
+            // alertfn();
         }
     }
+    // function makeInvisible(){
+    //     const alertel = document.getElementById('alertel');
+    //     if(alertel)
+    //         alertel.style.visibility = "hidden";
+    // }
     return (
         <div className="flex justify-center flex-col items-center h-screen">
+            {/* <div className="relative py-3 pl-4 pr-10 leading-normal text-red-700 bg-red-100 rounded-lg" role="alert" id="alertel">
+                <p>A simple alert with text and a right icon</p>
+                <span className="absolute inset-y-0 right-0 flex items-center mr-4" onClick={makeInvisible}>
+                    <svg className="w-4 h-4 fill-current" role="button" viewBox="0 0 20 20"><path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path></svg>
+                </span>
+            </div> */}
             <div className="bg-white p-8 rounded-lg shadow-md justify-center items-center flex-col" style={{ width: "600px", height: (type=='signup'?'500px':'400px')}}>
                 <div className="text-4xl font-extrabold flex justify-center">{ type=='signup' ? "Create an account" : "Welcome Back"}</div>
                 <div className="flex justify-center text-slate-400 pt-3">{ type=='signup' ? "Already have an account?" : "Don't have an account"}<Link className="ml-2 underline" to={ type=='signup' ? "/signin" : "/signup" }>{ type=='signup' ? "Sign in" : "Sign up"}</Link></div>
