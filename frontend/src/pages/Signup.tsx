@@ -1,6 +1,6 @@
 import { Auth } from "../components/Auth"
 
-export const Signup = () => {
+export default function Signup() {
     return (
         <>
             <Auth type={ "signup" }/>

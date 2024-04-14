@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { SignupType, SigninType } from "@a-khushal/course-selling"
 import { useState } from "react";
-import { BACKEND_URL } from "../utils";
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 import axios from "axios";
 
 export const Auth = ({type}: {type: "signup" | "signin"}) => {
@@ -20,7 +20,6 @@ export const Auth = ({type}: {type: "signup" | "signin"}) => {
     async function sendRequest() {
         try{
             const response = await axios.post(`${BACKEND_URL}/user/${type === 'signin'?"signin":"signup"}`, inputs);
-            console.log(inputs);
             const jwt = response.data.token;
             localStorage.setItem("token", jwt);
             navigate("/courses");
