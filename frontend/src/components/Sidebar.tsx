@@ -1,3 +1,5 @@
+import { Sidebarlist } from "./Sidebarlist"
+
 export const Sidebar = () =>{
     return <>
         <div className="fixed flex flex-col top-0 left-0 w-72 bg-slate-50 h-full border-r">
@@ -30,30 +32,30 @@ export const Sidebar = () =>{
             </div>
             <div className="overflow-y-auto overflow-x-hidden flex-grow">
             <ul className="flex flex-col py-4 space-y-1">
-                <li>
-                    <a href="#" className="relative flex flex-row items-center h-11 focus:outline-none text-slate-500 hover:text-gray-950 border-l-4 border-transparent pr-6">
-                        <span className="inline-flex justify-center items-center ml-4">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                        </span>
-                        <span className="ml-2 text-sm tracking-wide truncate">Home</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" className="relative flex flex-row items-center h-11 focus:outline-none text-slate-500 hover:text-gray-950 border-l-4 border-transparent pr-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 ml-4">
+                <Sidebarlist 
+                    name="Home" 
+                    svg={
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                    }
+                />
+                <Sidebarlist 
+                    name="Courses" 
+                    svg={
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3" />
                         </svg>
-                        <span className="ml-2 text-sm tracking-wide truncate">Courses</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" className="relative flex flex-row items-center h-11 focus:outline-none text-slate-500 hover:text-gray-950 border-l-4 border-transparent pr-6">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 ml-4">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-                    </svg>
-                    <span className="ml-2 text-sm tracking-wide truncate">Purchases</span>
-                    </a>
-                </li>
+                    }
+                />
+                 <Sidebarlist 
+                    name="Purchases" 
+                    svg={
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                        </svg>
+                    }
+                />
             </ul>
         </div>
         </div>

@@ -13,9 +13,21 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/signup' element={<Suspense fallback={<Loader/>}><Signup/></Suspense>}/>
-          <Route path='/signin' element={<Suspense fallback={<Loader/>}><Signin/></Suspense>}/>
-          <Route path='/courses' element={<Suspense fallback={<Loader/>}><Courses/></Suspense>}/>
+          <Route path='/signup' element={
+            <Suspense fallback={<Loader/>}>
+              <Signup/>
+            </Suspense>}
+          />
+          <Route path='/signin' element={
+            <Suspense fallback={<Loader/>}>
+              <Signin/>
+            </Suspense>}
+          />
+          <Route path='/courses' element={
+            <Suspense fallback={<Loader/>}>
+              <Courses/>
+            </Suspense>}
+          />
         </Routes>
       </BrowserRouter>
     </>
