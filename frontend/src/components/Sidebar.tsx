@@ -2,7 +2,7 @@ import { Sidebarlist } from "./Sidebarlist"
 
 export const Sidebar = () =>{
     return <>
-        <div className="fixed flex flex-col top-0 left-0 w-72 bg-slate-50 h-full border-r">
+        <div className="fixed flex flex-col top-0 left-0 w-0 bg-slate-50 h-full border-r invisible lg:visible lg:w-72">
             <div className="flex items-center justify-between h-16 border-b">
                 <div className="flex justify-center items-center pl-4">
                     <a className="font-semibold" href="#">
@@ -30,7 +30,7 @@ export const Sidebar = () =>{
                     </svg>
                 </div>
             </div>
-            <div className="overflow-y-auto overflow-x-hidden flex-grow">
+            <div className="overflow-y-auto overflow-x-hidden flex-grow invisible lg:visible">
             <ul className="flex flex-col py-4 space-y-1">
                 <Sidebarlist 
                     name="Home" 
