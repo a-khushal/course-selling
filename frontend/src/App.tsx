@@ -2,10 +2,10 @@ import './App.css'
 import {BrowserRouter, Route, Routes } from 'react-router-dom';
 import React, { Suspense } from 'react';
 import Loader from './components/Loader';
-const Courses = React.lazy(() => import("./pages/Courses"))
+// const Courses = React.lazy(() => import("./pages/Courses"))
 const Signup = React.lazy(() => import("./pages/Signup"))
 const Signin = React.lazy(() => import("./pages/Signin"))
-
+import Courses from './pages/Courses';
 
 function App() {
 
@@ -23,11 +23,12 @@ function App() {
               <Signin/>
             </Suspense>}
           />
-          <Route path='/courses' element={
+          {/* <Route path='/courses' element={
             <Suspense fallback={<Loader/>}>
               <Courses/>
             </Suspense>}
-          />
+          /> */}
+          <Route path='/courses' element={<Courses/>}/>
         </Routes>
       </BrowserRouter>
     </>
