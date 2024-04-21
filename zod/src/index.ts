@@ -18,6 +18,7 @@ export type SigninType = z.infer<typeof signinSchema>;
 export const createCourseSchema = z.object({
     title: z.string(),
     description: z.string(),
+    price: z.string(),
 })
 
 export type CreateCourseType = z.infer<typeof createCourseSchema>

@@ -54,6 +54,7 @@ adminRouter.post("/create", adminMiddleware, async(req, res)=>{
             data: {
                 title: req.body.title,
                 description: req.body.description,
+                price: req.body.price,
             }
         });
         return res.json({

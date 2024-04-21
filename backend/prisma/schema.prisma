@@ -25,6 +25,7 @@ model Course{
   id  String  @id @default(uuid())
   title String 
   description String
+  price String @default("0")
   users CourseOfUser[]
 }
 

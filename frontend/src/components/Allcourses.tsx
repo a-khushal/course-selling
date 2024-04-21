@@ -14,7 +14,7 @@ export const Allcourses = () => {
                 <div className="text-2xl font-medium pl-6">Courses</div>
                 <div className="grid lg:grid-cols-2 md:grid-cols-1 sm:grid-cols-1 mt-2">
                     { 
-                        courses.map(course => <CourseCard title={course.title} description={course.description} price="49.00" key={course.id}/>) 
+                        courses.map(course => <CourseCard title={course.title} description={course.description} price={course.price} key={course.id}/>) 
                     }
                 </div>
             </div>

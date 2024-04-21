@@ -6,6 +6,7 @@ export interface Course{
     id: string;
     title: string;
     description: string;
+    price: string;
 }
 
 export const useAllCourses = () => {
