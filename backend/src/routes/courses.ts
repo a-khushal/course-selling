@@ -37,7 +37,6 @@ const signedInMiddleware = async(req: request, res: Response, next: NextFunction
 
 courseRouter.get("/bought", signedInMiddleware, async(req, res)=>{
     try{
-        console.log(req.body.userId);
         const coursesOfUser = await client.courseOfUser.findMany({
             where: {
                 userId: req.body.userId,
@@ -73,8 +72,10 @@ courseRouter.get("/purchases", signedInMiddleware, async(req, res)=>{
                 userId
             }
         });
-        if(!bought){
-            return res.status(200).json({msg: "No courses bought yet!"});
+        if(bought.length === 0){
+            return res.status(400).json({
+                msg: "No courses bought yet!"
+            });
         }
         const purchased = bought.map(async (buy)=>{
             const course = await client.course.findUnique({
@@ -86,7 +87,7 @@ courseRouter.get("/purchases", signedInMiddleware, async(req, res)=>{
         })
         Promise.all(purchased)
             .then((purchases)=>{
-                return res.status(200).json({purchases});
+                return res.status(200).json({ purchases });
             })
             .catch((error) => {
                 console.error("Error fetching purchases:", error);
