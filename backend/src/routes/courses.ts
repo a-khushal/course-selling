@@ -45,8 +45,8 @@ courseRouter.get("/bought", signedInMiddleware, async(req, res)=>{
         return res.status(200).json({
             courses: coursesOfUser, 
         })
-    } catch(err) {
-        console.log(err);
+    } catch(error) {
+        console.log(error);
         return res.status(411).json({error: "Internal Server Error"});
     }
 })
@@ -58,8 +58,8 @@ courseRouter.get("/bulk", async(req, res)=>{
         res.json({
             courses
         })
-    } catch(err) {
-        console.log(err);
+    } catch(error) {
+        console.log(error);
         return res.status(500).json({ error: "Internal Server Error" });
     }
 });
@@ -93,8 +93,8 @@ courseRouter.get("/purchases", signedInMiddleware, async(req, res)=>{
                 console.error("Error fetching purchases:", error);
                 return res.status(500).json({ error: "Internal Server Error" });
             });
-    } catch {
-        console.error;
+    } catch(error) {
+        console.error(error)
         res.status(500).json({error: "Internal server error"})
     }
 })
@@ -110,8 +110,8 @@ courseRouter.get("/:id", signedInMiddleware, async(req, res)=>{
         res.status(200).json({
             course: course
         })
-    } catch(err) {
-        console.log(err);
+    } catch(error) {
+        console.log(error);
         return res.status(500).json({ error: "Internal Server Error" });
     }
 })
@@ -135,9 +135,9 @@ courseRouter.post("/:id/buy", signedInMiddleware, async(req, res)=>{
                 courseId: courseId,
             },
         });
-        res.status(200).json({ message: "Course purchased successfully" });
-    } catch (err) {
-        console.error(err);
+        res.status(200).json({ msg: "Course purchased successfully" });
+    } catch (error) {
+        console.error(error);
         res.status(500).json({ error: "Internal Server Error" });
     }
 });

@@ -47,7 +47,7 @@ adminRouter.post("/create", adminMiddleware, async(req, res)=>{
         const { success } = createCourseSchema.safeParse(req.body);
         if(!success){
             res.status(411).json({
-                message: "Inputs are incorrect"
+                msg: "Inputs are incorrect"
             })
         }
         const course = await client.course.create({

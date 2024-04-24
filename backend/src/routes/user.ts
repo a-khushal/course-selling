@@ -13,7 +13,7 @@ userRouter.post("/signup", async(req, res)=>{
         const { success } = signupSchema.safeParse(req.body);
         if(!success){
             res.status(411).json({
-                message: "Inputs are incorrect"
+                msg: "Inputs are incorrect"
             })
         }
         const userAlreadyExists = await client.user.findUnique({
@@ -38,8 +38,8 @@ userRouter.post("/signup", async(req, res)=>{
         res.status(200).json({
             token
         })
-    } catch (err){
-        console.log(err);
+    } catch (error){
+        console.log(error);
         res.status(403).json({
             error: "error while signing up!"
         })
@@ -52,7 +52,7 @@ userRouter.post("/signin", async(req, res)=>{
         const { success } = signinSchema.safeParse(req.body);
         if(!success){
             res.status(411).json({
-                message: "Inputs are incorrect"
+                msg: "Inputs are incorrect"
             })
         }
         const user = await client.user.findUnique({
@@ -72,8 +72,8 @@ userRouter.post("/signin", async(req, res)=>{
         res.status(200).json({
             token
         });
-    } catch (err){
-        console.log(err);
+    } catch (error){
+        console.log(error);
         res.status(403).json({
             error: "error while logging in!"
         })

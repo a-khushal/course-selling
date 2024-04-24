@@ -22,7 +22,6 @@ export const usePurchases = () => {
                 setLoading(false);
             }
         }).catch(err=>{
-            // console.log(err.response.data)
             if(err.response.data.error){
                 setMessage(err.response.data.error);
             } else {
