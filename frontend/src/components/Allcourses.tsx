@@ -4,7 +4,6 @@ import Loader from "./Loader";
 
 export const Allcourses = () => {
     const {courses, loading} = useAllCourses();
-    console.log(courses, courses.length);
     if(loading){
         return <Loader/>
     }

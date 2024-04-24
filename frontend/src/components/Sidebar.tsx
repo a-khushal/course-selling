@@ -58,7 +58,7 @@ export const Sidebar = () =>{
                         bold={ location.pathname=='/courses' ? true : false }
                     />
                 </Link>
-                <Link to={"/"}>
+                <Link to={"/purchases"}>
                     <Sidebarlist 
                         name="Purchases" 
                         svg={
