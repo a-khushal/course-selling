@@ -31,7 +31,7 @@ export const Auth = ({type}: {type: "signup" | "signin"}) => {
     }
     return (
         <div className="relative">
-            <div className="absolute w-full"><HomeTopBar hide={ true }/></div>
+            <div className="absolute w-full"><HomeTopBar/></div>
             <div className="flex justify-center items-center h-screen">
                 <div className="bg-white p-8 rounded-lg shadow-md justify-center items-center flex-col" style={{ width: "600px", height: (type=='signup'?'500px':'400px')}}>
                     <div className="text-4xl font-extrabold flex justify-center">{ type=='signup' ? "Create an account" : "Welcome Back"}</div>

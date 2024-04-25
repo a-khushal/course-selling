@@ -1,7 +1,7 @@
 import { Review } from "./Review"
 
 export const ParticularCard = ({title, description, price}: {title: string, description: string, price: string}) => {
-    return <div className="lg:flex lg:justify-center">
+    return <div className="lg:flex lg:justify-center mt-10">
         <div className="lg:w-8/12">
             <div className="text-4xl capitalize font-medium">
                 {title}
