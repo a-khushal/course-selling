@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom"
-import { Searchbar } from "./Searchbar";
-import { Sidebar } from "./Sidebar";
+import { Searchbar } from "../components/Searchbar";
+import { Sidebar } from "../components/Sidebar";
 import { useParticular } from "../hooks/useParticular";
-import Loader from "./Loader";
-import { ParticularCard } from "./ParticularCard";
+import Loader from "../components/Loader";
+import { ParticularCard } from "../components/ParticularCard";
 
 export const Particular = () => {
     const { id = "" } = useParams();

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const usePurchases = () => {
+    const [user, setUser] = useState("");
     const [ purchases, setPurchases ] = useState([]);
     const [ loading, setLoading ] = useState(true);
     const [ message, setMessage ] = useState("");
@@ -12,7 +13,8 @@ export const usePurchases = () => {
                 Authorization: localStorage.getItem("token"),
             }, 
         }).then(res=>{
-            setPurchases(res.data);
+            setUser(res.data.Username);
+            setPurchases(res.data.purchases);
             setLoading(false);
         }).catch(err=>{
             if(err.response.data.error){
@@ -20,11 +22,13 @@ export const usePurchases = () => {
             } else {
                 setMessage(err.response.data.msg);
             }
+            setUser(err.response.data.Username)
             setPurchases([]);
             setLoading(false)
         })
     }, []);
     return {
+        user,
         message,
         purchases,
         loading,

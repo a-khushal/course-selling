@@ -72,9 +72,15 @@ courseRouter.get("/purchases", signedInMiddleware, async(req, res)=>{
                 userId
             }
         });
+        const user = await client.user.findUnique({
+            where: {
+                id: userId,
+            }
+        })
         if(bought.length === 0){
             return res.status(400).json({
-                msg: "No courses bought yet!"
+                msg: "No courses bought yet!", 
+                Username: user?.name,
             });
         }
         const purchased = bought.map(async (buy)=>{
@@ -87,11 +93,17 @@ courseRouter.get("/purchases", signedInMiddleware, async(req, res)=>{
         })
         Promise.all(purchased)
             .then((purchases)=>{
-                return res.status(200).json({ purchases });
+                return res.status(200).json({ 
+                    purchases, 
+                    Username: user?.name
+                });
             })
             .catch((error) => {
                 console.error("Error fetching purchases:", error);
-                return res.status(500).json({ error: "Internal Server Error" });
+                return res.status(500).json({ 
+                    error: "Internal Server Error", 
+                    Username: user?.name
+                });
             });
     } catch(error) {
         console.error(error)
@@ -110,7 +122,6 @@ courseRouter.get("/:id", signedInMiddleware, async(req, res)=>{
         res.status(200).json({
             course: course
         })
-        console.log(course)
     } catch(error) {
         console.log(error);
         return res.status(500).json({ error: "Internal Server Error" });

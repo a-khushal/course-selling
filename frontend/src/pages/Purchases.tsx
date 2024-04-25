@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { usePurchases } from "../hooks/usePurchases";
-import Loader from "./Loader";
-import { Searchbar } from "./Searchbar";
-import { Sidebar } from "./Sidebar";
+import Loader from "../components/Loader";
+import { Searchbar } from "../components/Searchbar";
+import { Sidebar } from "../components/Sidebar";
 
 
 export const Purchases = () => {

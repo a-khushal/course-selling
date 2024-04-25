@@ -1,7 +1,9 @@
+import { usePurchases } from "../hooks/usePurchases";
 import { Icon } from "./Icon"
 import { Size } from "./SizeEnum"
 
 export const Searchbar = ({hide}: {hide: boolean}) => {
+    const { user } = usePurchases();
     return <div>
         <div className="flex justify-between h-16 border-b ml-0 bg-slate-50 lg:ml-72">
             <div className="flex items-center">
@@ -21,8 +23,8 @@ export const Searchbar = ({hide}: {hide: boolean}) => {
                     </div>
                 </div>
             </div>
-            <div className="mr-20 flex justify-center items-center cursor-pointer">
-                <Icon height={9} width={9} size={Size.MD}/>
+            <div className={`mr-20 flex justify-center items-center cursor-pointer`}>
+                <Icon height={9} width={9} size={Size.MD} name={ user ? user : "Anonymous" }/>
             </div>
         </div>
     </div>

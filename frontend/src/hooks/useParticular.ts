@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import { Course } from "./useAllCourses";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-
 export const useParticular = ( id : string ) => {
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(true);
