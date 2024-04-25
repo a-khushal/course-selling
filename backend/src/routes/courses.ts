@@ -101,7 +101,7 @@ courseRouter.get("/purchases", signedInMiddleware, async(req, res)=>{
 
 courseRouter.get("/:id", signedInMiddleware, async(req, res)=>{
     try{
-        const {id} = req.params;
+        const { id } = req.params;
         const course = await client.course.findUnique({
             where: {
                 id: id
@@ -110,6 +110,7 @@ courseRouter.get("/:id", signedInMiddleware, async(req, res)=>{
         res.status(200).json({
             course: course
         })
+        console.log(course)
     } catch(error) {
         console.log(error);
         return res.status(500).json({ error: "Internal Server Error" });

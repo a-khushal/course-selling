@@ -7,6 +7,7 @@ const Signup = React.lazy(() => import("./pages/Signup"))
 const Signin = React.lazy(() => import("./pages/Signin"))
 import Courses from './pages/Courses';
 import { Purchases } from './components/Purchases';
+import { Particular } from './components/Particular';
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
           /> */}
           <Route path='/courses' element={<Courses/>}/>
           <Route path='/purchases' element={<Purchases/>}/>
+          <Route path='/courses/:id' element={<Particular/>}/>
         </Routes>
       </BrowserRouter>
     </>

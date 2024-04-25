@@ -11,7 +11,6 @@ export const Purchases = () => {
     if(payload.loading){
         return <Loader/>
     }
-    // console.log(payload.purchases)
     if(payload.message === 'unauthorized!'){
         alert("Please signin/signup")
         navigate("/signin");
@@ -20,7 +19,7 @@ export const Purchases = () => {
         return <div>
             <div className="relative">
                 <div className="absolute w-full">
-                    <Searchbar/>
+                    <Searchbar hide={true}/>
                 </div>
                 <div className="lg:ml-72">
                     <div className="flex justify-center items-center h-screen">

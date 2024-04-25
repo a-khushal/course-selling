@@ -8,3 +8,5 @@ view particular course
 signin
 singup
 view purchased courses
+
+use React.memo
