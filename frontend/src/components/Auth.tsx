@@ -6,6 +6,7 @@ import axios from "axios";
 import { HomeTopBar } from "./HomeTopBar";
 
 export const Auth = ({type}: {type: "signup" | "signin"}) => {
+    const navigate = useNavigate();
     type AuthInput = SignupType | SigninType;
     const initialState: AuthInput = type === 'signin' ? {
         email: "", 
@@ -16,7 +17,6 @@ export const Auth = ({type}: {type: "signup" | "signin"}) => {
         password: ""
     }
     const [inputs, setInputs] = useState<AuthInput>(initialState);
-    const navigate = useNavigate();
     async function sendRequest() {
         try{
             const response = await axios.post(`${BACKEND_URL}/user/${type === 'signin'?"signin":"signup"}`, inputs);
@@ -28,7 +28,7 @@ export const Auth = ({type}: {type: "signup" | "signin"}) => {
             console.log(err);
             alert("Error while authenticating");
         }
-    }
+    }    
     return (
         <div className="relative">
             <div className="absolute w-full"><HomeTopBar/></div>

@@ -18,6 +18,9 @@ export const useAllCourses = () => {
                 setCourses(res.data.courses);
                 setLoading(false)
             })
+            .catch((err)=>{
+                console.log(err);
+            })
     }, []);
     return {
         loading,

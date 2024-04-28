@@ -51,6 +51,29 @@ courseRouter.get("/bought", signedInMiddleware, async(req, res)=>{
     }
 })
 
+courseRouter.get("/search", async(req, res)=>{
+    try{
+        console.log(req.query)
+        let courses;
+        if(req.query.title){
+            courses = await client.course.findMany({
+                where: {
+                    title: {
+                        contains: req.query.title?.toString() || "",
+                    },
+                },
+            });
+            console.log(courses, req.query)
+        }
+        res.json({
+            courses
+        })
+    } catch(error) {
+        console.log(error);
+        return res.status(411).json({error: "Internal Server Error"});
+    }
+})
+
 
 courseRouter.get("/bulk", async(req, res)=>{
     try{

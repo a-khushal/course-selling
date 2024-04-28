@@ -1,8 +1,14 @@
+// import { useState } from "react";
 import { usePurchases } from "../hooks/usePurchases";
 import { Icon } from "./Icon"
 import { Size } from "./SizeEnum"
+import { useDebouncedSearch } from "../hooks/useDebouncedSearch";
 
-export const Searchbar = ({hide}: {hide: boolean}) => {
+// eslint-disable-next-line @typescript-eslint/ban-types
+export const Searchbar = ({ hide, search, setSearch }: { hide: boolean, search: string, setSearch: Function }) => {
+    // const [ search, setSearch ] = useState("");
+    useDebouncedSearch(search);
+    // console.log(debouncedSearch)
     const { user } = usePurchases();
     return <div>
         <div className="flex justify-between h-16 border-b ml-0 bg-slate-50 lg:ml-72">
@@ -19,7 +25,7 @@ export const Searchbar = ({hide}: {hide: boolean}) => {
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
                             </svg>
                         </div>
-                        <input type="search" id="default-search" className={`block w-full p-2.5 ps-10 text-sm text-gray-900 border border-gray-300 focus:border-slate-200 focus:border-4 rounded-lg ${ hide === true? "invisible" : "visible" }`} placeholder="Search courses..." />
+                        <input type="search" id="default-search" className={`block w-full p-2.5 ps-10 text-sm text-gray-900 border border-gray-300 focus:border-slate-200 focus:border-4 rounded-lg ${ hide === true? "invisible" : "visible" }`} placeholder="Search courses..." onChange={(e)=>setSearch(e.target.value)}/>
                     </div>
                 </div>
             </div>
