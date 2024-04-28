@@ -53,7 +53,7 @@ courseRouter.get("/bought", signedInMiddleware, async(req, res)=>{
 
 courseRouter.get("/search", async(req, res)=>{
     try{
-        console.log(req.query)
+        // console.log(req.query)
         let courses;
         if(req.query.title){
             courses = await client.course.findMany({
@@ -63,7 +63,7 @@ courseRouter.get("/search", async(req, res)=>{
                     },
                 },
             });
-            console.log(courses, req.query)
+            // console.log(courses, req.query)
         }
         res.json({
             courses

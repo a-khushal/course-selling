@@ -10,3 +10,5 @@ singup
 view purchased courses
 
 use React.memo
+
+use a seperate hook to check if the user is signed in to prevent doing certain things like in Signin.tsx or seawrchbar.tsx ...(/me endpoint as a hook)
