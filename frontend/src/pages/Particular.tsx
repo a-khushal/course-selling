@@ -22,7 +22,7 @@ export const Particular = () => {
     return <div>
         <div>
             <div className="w-full">
-                <Searchbar hide={true}/>
+                <Searchbar hide={true} search="" setSearch={()=>""} />
             </div>
             <div className="lg:ml-52">
                     <div className="h-screen mt-6 mx-5">

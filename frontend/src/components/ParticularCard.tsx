@@ -1,3 +1,4 @@
+import { ButtonComponent } from "./ButtonComponent"
 import { Review } from "./Review"
 
 export const ParticularCard = ({title, description, price}: {title: string, description: string, price: string}) => {
@@ -13,8 +14,12 @@ export const ParticularCard = ({title, description, price}: {title: string, desc
                 ${price}
             </div>
             <div className="mt-3 text-md text-gray-500">Includes lifetime access</div>
-            <button type="button" className="text-white bg-black hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-normal rounded-lg text-md px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 w-full mt-5">Enroll in Course</button>
-            <button type="button" className="text-black bg-white hover:bg-gray-100 rounded-lg text-md px-5 py-2.5 me-2 mb-2 w-full mt-2 border border-3">Add to Wishlist</button>
+            <div className="mt-4">
+                <ButtonComponent text="Enroll in Course" color="black"/>
+            </div>
+            <div className="mt-4">
+                <ButtonComponent text="Add to Wishlist" color="white"/>
+            </div>
             <div className="mt-4">
                 <div className="font-medium text-xl">Course Description</div>
                 <div className="text-lg text-gray-500">
