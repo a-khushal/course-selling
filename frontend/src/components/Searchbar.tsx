@@ -1,15 +1,15 @@
 // import { useState } from "react";
-import { usePurchases } from "../hooks/usePurchases";
 import { Icon } from "./Icon"
 import { Size } from "./SizeEnum"
 import { useDebouncedSearch } from "../hooks/useDebouncedSearch";
+import { useSignedIn } from "../hooks/useSignedIn";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export const Searchbar = ({ hide, search, setSearch }: { hide: boolean, search: string, setSearch: Function }) => {
     // const [ search, setSearch ] = useState("");
     useDebouncedSearch(search);
     // console.log(debouncedSearch)
-    const { user } = usePurchases();
+    const { user } = useSignedIn();
     return <div>
         <div className="flex justify-between h-16 border-b ml-0 bg-slate-50 lg:ml-72">
             <div className="flex items-center">

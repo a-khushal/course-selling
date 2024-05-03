@@ -6,6 +6,7 @@ export const useSignedIn = () => {
     const [signedIn, setSignedIn] = useState(false);
     const [loading, setLoading] = useState(true);
     const [ message, setMessage ] = useState("");
+    const [user, setUser] = useState("");
     useEffect(() => {
         axios.get(`${BACKEND_URL}/user/me`, {
             headers: {
@@ -13,6 +14,7 @@ export const useSignedIn = () => {
             }
         }).then(res => {
             setSignedIn(res.data.msg);
+            setUser(res.data.Username);
             setLoading(false)
         }).catch(err=>{
             if(err.response.data.error){
@@ -24,5 +26,5 @@ export const useSignedIn = () => {
             } 
         })
     }, []);
-    return { signedIn, loading, message };
+    return { signedIn, loading, message, user };
 }

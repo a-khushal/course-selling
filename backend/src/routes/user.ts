@@ -95,10 +95,14 @@ userRouter.get("/me", async(req, res)=>{
         const secret = process.env.JWT_SECRET || "";
         const payload = jwt.verify(jwtToken, secret) as JwtPayload;
         // req.body.userId = payload.userId ;
-        // console.log(true)
-        // return true;
+        const user = await client.user.findUnique({
+            where: {
+                id: payload.userId,
+            }
+        })
         res.status(200).json({
-            msg: true
+            msg: true,
+            Username: user?.name
         })
     } catch (error) {
         console.log(error)
