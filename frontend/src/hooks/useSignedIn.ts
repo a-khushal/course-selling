@@ -3,16 +3,26 @@ import { useEffect, useState } from "react"
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const useSignedIn = () => {
-    const [signedIn, setSignedIn] = useState("");
+    const [signedIn, setSignedIn] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [ message, setMessage ] = useState("");
     useEffect(() => {
         axios.get(`${BACKEND_URL}/user/me`, {
             headers: {
                 Authorization: localStorage.getItem("token"),
             }
         }).then(res => {
-            console.log(res)
-            setSignedIn(res.data);
-        });
+            setSignedIn(res.data.msg);
+            setLoading(false)
+        }).catch(err=>{
+            if(err.response.data.error){
+                setMessage(err.response.data.error)
+                setLoading(false)
+            } else {
+                setMessage(err.response.data.msg)
+                setLoading(false)
+            } 
+        })
     }, []);
-    return { signedIn };
+    return { signedIn, loading, message };
 }

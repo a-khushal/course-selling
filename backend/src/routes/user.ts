@@ -83,12 +83,10 @@ userRouter.post("/signin", async(req, res)=>{
 userRouter.get("/me", async(req, res)=>{
     try{
         if(!req.headers){
-            console.log(false);
             return res.status(400).json({ error: "Request headers not found" });
         }
         const token = req.headers["authorization"];
         if(!token){
-            console.log(false);
             return res.status(401).json({
                 error: "unauthorized!"
             })
@@ -96,9 +94,12 @@ userRouter.get("/me", async(req, res)=>{
         const jwtToken = token.split(" ")[1];
         const secret = process.env.JWT_SECRET || "";
         const payload = jwt.verify(jwtToken, secret) as JwtPayload;
-        req.body.userId = payload.userId ;
-        console.log(true)
-        return true;
+        // req.body.userId = payload.userId ;
+        // console.log(true)
+        // return true;
+        res.status(200).json({
+            msg: true
+        })
     } catch (error) {
         console.log(error)
         return res.status(500).json({ error: "Internal Server Error" });

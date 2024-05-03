@@ -19,7 +19,7 @@ export const Purchases = () => {
         return <div>
             <div className="relative">
                 <div className="absolute w-full">
-                    <Searchbar hide={true}/>
+                    <Searchbar hide={true} search="" setSearch={()=>{}}/>
                 </div>
                 <div className="lg:ml-72">
                     <div className="flex justify-center items-center h-screen">
