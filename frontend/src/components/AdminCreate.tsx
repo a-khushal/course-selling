@@ -2,7 +2,7 @@ import { ButtonComponent } from "./ButtonComponent"
 
 export const AdminCreate = () => {
     return <div> 
-        <div className="bg-white p-12 rounded-lg shadow-2xl justify-center items-center" style={{width: "1000px", height: "600px"}}>
+        <div className="bg-white p-12 rounded-lg shadow-xl justify-center items-center w-700 h-600">
             <div className="text-3xl font-medium flex justify-left">
                 Create Course
             </div>
