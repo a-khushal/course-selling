@@ -3,13 +3,15 @@ import { Icon } from "./Icon"
 import { Size } from "./SizeEnum"
 import { useDebouncedSearch } from "../hooks/useDebouncedSearch";
 import { useSignedIn } from "../hooks/useSignedIn";
+import { useIsAdmin } from "../hooks/useIsAdmin";
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export const Searchbar = ({ hide, search, setSearch }: { hide: boolean, search: string, setSearch: Function }) => {
     // const [ search, setSearch ] = useState("");
     useDebouncedSearch(search);
     // console.log(debouncedSearch)
-    const { user } = useSignedIn();
+    const { user } = useSignedIn(); 
+    const { name } = useIsAdmin();
     return <div>
         <div className="flex justify-between h-16 border-b ml-0 bg-slate-50 lg:ml-72">
             <div className="flex items-center">
@@ -30,7 +32,7 @@ export const Searchbar = ({ hide, search, setSearch }: { hide: boolean, search: 
                 </div>
             </div>
             <div className={`mr-20 flex justify-center items-center cursor-pointer`}>
-                <Icon height={9} width={9} size={Size.MD} name={ user ? user : "Anonymous" }/>
+                <Icon height={9} width={9} size={Size.MD} name={ user ? user : name ? name : "Anonymous"}/>
             </div>
         </div>
     </div>

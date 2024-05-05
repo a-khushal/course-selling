@@ -8,6 +8,7 @@ const Home = React.lazy(() => import("./pages/Home"));
 import Courses from './pages/Courses';
 import { Purchases } from './pages/Purchases';
 import { Particular } from './pages/Particular';
+import { AdminCreate } from './components/AdminCreate';
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
           <Route path='/courses' element={<Courses/>}/>
           <Route path='/purchases' element={<Purchases/>}/>
           <Route path='/courses/:id' element={<Particular/>}/>
+          <Route path='/admin' element={<AdminCreate/>}/>
         </Routes>
       </BrowserRouter>
     </>

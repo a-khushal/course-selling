@@ -42,6 +42,41 @@ const adminMiddleware = async function(req: Request, res: Response, next: NextFu
     }
 }
 
+adminRouter.get("/me", async(req, res)=>{
+    try{
+        if(!req.headers){
+            return res.status(400).json({ error: "Request headers not found" });
+        }
+        const token = req.headers['authorization'];
+        if(!token){
+            return res.status(200).json({
+                error: "unauthorized!"
+            })
+        }
+        const jwtToken = token.split(" ")[1];
+        const secret = process.env.JWT_SECRET || "";
+        const payload = jwt.verify(jwtToken, secret) as JwtPayload;
+        req.body.userId = payload.userId ;
+        const admin = await client.user.findUnique({
+            where: {
+                id: payload.userId,
+            }
+        });
+        if(admin?.email === 'admin@gmail.com' && admin.password === 'admin@admin') {
+            return res.status(200).json({
+                msg: true,
+                user: "admin"
+            })
+        } else {
+            return res.status(200).json({
+                error: "unauthorized!"
+            })
+        }
+    } catch (error) {
+        return res.status(500).json({ error: "Internal Server Error" });
+    }
+})
+
 adminRouter.post("/create", adminMiddleware, async(req, res)=>{
     try{
         const { success } = createCourseSchema.safeParse(req.body);
