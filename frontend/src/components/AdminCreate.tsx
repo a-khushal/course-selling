@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 export const AdminCreate = () => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [message, setMessage] = useState("");
 
     const navigate = useNavigate();
