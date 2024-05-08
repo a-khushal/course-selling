@@ -10,11 +10,14 @@ interface course{
 
 export const useCreateCourse = (course: course) => {
     const [message, setMessage] = useState("");
-
     axios.post(`${BACKEND_URL}/admin/create`, {
         title: course.title, 
         description: course.description,
         price: course.price
+    }, {
+        headers: {
+            Authorization: localStorage.getItem("token"),
+        }
     }).then((res)=>{
         setMessage(res.data.message)
     }).catch((err)=>{
